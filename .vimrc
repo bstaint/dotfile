@@ -58,7 +58,7 @@ colo wombat256mod
 " 自定义命令组
 augroup MyVim
     au InsertEnter,InsertLeave * set cul!
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
 " 按键映射
@@ -79,5 +79,5 @@ inoremap <expr> <Tab> search('\%#[]>)}''"]', 'n') ? '<Right>' : '<Tab>'
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
+    runtime! macros/matchit.vim
 endif
