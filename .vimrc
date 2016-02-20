@@ -58,7 +58,7 @@ colo wombat256mod
 " 自定义命令组
 augroup MyVim
     au InsertEnter,InsertLeave * set cul!
-	:au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
 " 按键映射
