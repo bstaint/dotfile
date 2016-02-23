@@ -1,51 +1,46 @@
-URxvt.colorBD:white  
-URxvt.colorUL:Green  
-URxvt.background: black  
-URxvt.foreground: white 
-URxvt.scrollBar: false
-Xft.dpi: 96
-Xft.antialias: 1
-Xft.hinting: 1
-Xft.hintstyle: hintfull
-Xft.rgba: rgb
-! URxvt.allow_bold: True
-!URxvt*font: xft:Source Code Pro:size=12, xft:Source Han Sans CN:size=11, xft:DejaVu Sans Mono:size=11
-URxvt.font:     xft:bitstream vera sans mono:size=11:antialias=true
-URxvt.boldFont: xft:bitstream vera sans mono:bold:size=11:antialias=true
-URxvt*letterSpace: -2
-URxvt.cursorBlink:True
-URxvt.inheritPixmap: True  
-URxvt.tintColor: grey  
-! URxvt.shading: 80 
-URxvt.matcher.button: 1  
-! URxvt.perl-ext-common: default,tabbed  
-! URxvt.tabbed.tab-fg: 10  
-! URxvt.tabbed.tab-bg: 0  
-! URxvt.tabbed.tabbar-fg: 5 
-URxvt.geometry: 80x24
-! URxvt.transparent:true
+!
+! .Xresources
+!
+URxvt.scrollBar:           false
+URxvt.saveLines:           8192
+URxvt.internalBorder:      4
+URxvt.externalBorder:      0
+URxvt.highlightSelection:  true
+URxvt.loginShell:          true
+URxvt.termName:            xterm-256color
+URxvt.letterSpace:         -1
+URxvt.font:                xft:DejaVu Sans Mono:pixelsize=15
+URxvt.boldFont:            xft:DejaVu Sans Mono:pixelsize=15:style=Bold
+URxvt.colorBD:             #FFFFFF
+URxvt.borderColor:         black
+URxvt.scrollColor:         black
+URxvt.underlineColor:      white
+URxvt.foreground:          #FFFFFF
+URxvt.background:          #111111
+URxvt.mapAlert:            true
+URxvt.cursorColor:         green
+URxvt.geometry:            80x24
 
-!Black  
-URxvt.color0:  #000000  
-URxvt.color8:  #555753  
-!Red  
-URxvt.color1:  #CC0000  
-URxvt.color9:  #EF2929  
-!Green  
-URxvt.color2:  #4E9A06  
-URxvt.color10: #8AE234  
-!Yellow  
-URxvt.color3:  #C4A000  
-URxvt.color11: #FCE94F  
-!Blue  
-URxvt.color4:  #3465A4  
-URxvt.color12: #729FCF  
-!Magenta  
-URxvt.color5:  #75507B  
-URxvt.color13: #AD7FA8  
-!Cyan  
-URxvt.color6:  #06989A  
-URxvt.color14: #34E2E2  
-!White  
-URxvt.color7:  #D3D7CF  
-URxvt.color15: #EEEEEC  
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintfull
+
+! VGA
+*color0:  #000000
+*color1:  #AA0000
+*color2:  #00AA00
+*color3:  yellow
+*color4:  #0000AA
+*color5:  #AA00AA
+*color6:  #00AAAA
+*color7:  #AAAAAA
+*color8:  #666666
+*color9:  #FF5555
+*color10: #55FF55
+*color11: #FFFF55
+*color12: #5555FF
+*color13: #FF55FF
+*color14: #55FFFF
+*color15: #FFFFFF

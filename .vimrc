@@ -52,6 +52,7 @@ set guioptions-=m guioptions-=T guioptions-=r guioptions-=L
 set statusline=[#%n]\ %<%t%y%m\ %{getcwd()}
 set statusline+=%=\ <%{&ff}\,%{&fenc}\ lin:%l,%v\/%L>
 set laststatus=2
+set guifont=DejaVu\ Sans\ Mono\ 11
 set t_Co=256
 colo wombat256mod
 
