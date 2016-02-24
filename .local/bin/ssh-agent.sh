@@ -1,4 +1,5 @@
 #!/bin/bash
+# source url: https://gist.github.com/mzedeler/45ef2be24d9ff13b33ba
 
 # Set up ssh-agent
 SSH_ENV="$HOME/.ssh/environment"
