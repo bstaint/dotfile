@@ -11,7 +11,7 @@ VERSION         = 2.4           # Config file version
 #------------------------------------------------------------------------------
 # Colors: Format is hex triplet - 0xrrggbb
 #------------------------------------------------------------------------------
-BG_COLOR        = "0xFFFFFF"    # Panel background and tinting color
+BG_COLOR        = "0x000000"    # Panel background and tinting color
 TASK_COLOR      = "0xFFFFFF"    # Normal task name color 
 FOCUSED_COLOR   = "0x9FC6FF"    # Focused task name color
 SHADED_COLOR    = "0xFFFFFF"    # Shaded task name color 
@@ -31,11 +31,11 @@ CLOCK_SHADOW_COLOR     = "0x000000"
 #------------------------------------------------------------------------------
 # Panel Spacing and Location Options: Measured in pixels
 #------------------------------------------------------------------------------
-P_LOCATION      = 1             # Panel placement: 0 = top, 1 = bottom
+P_LOCATION      = 0             # Panel placement: 0 = top, 1 = bottom
 P_WIDTH         = 0             # Panel width: 0 = Use full screen width
 P_START         = 0             # Starting X coordinate of the panel
 P_SPACER        = 6             # Spacing between panel objects
-P_HEIGHT        = 28            # Panel height
+P_HEIGHT        = 23            # Panel height
 
 #------------------------------------------------------------------------------
 # Icon Size Options: Measured in pixels
@@ -53,7 +53,7 @@ TRAY_I_WIDTH    = 20            # System tray icon width  (usually 16 or 24)
 # Panel Clock Format: 'man strftime' for detailed formatting options and help
 #------------------------------------------------------------------------------
 #CLOCK_FORMAT    = "%Y-%m-%d %H:%M"    # Ex: 2004-09-25 17:45 
-CLOCK_FORMAT    = "%H:%M"    # Ex: 2004-09-25 17:45 
+CLOCK_FORMAT    = "%a %b %d,%l:%M %p"      # Ex: 2004-09-25 17:45 
 
 #------------------------------------------------------------------------------
 # Clock Delay: Seconds between each clock update during periods of inactivity
@@ -119,14 +119,14 @@ ICON_LIST       = {
 #------------------------------------------------------------------------------
 LAUNCH_LIST     = [
                    ("urxvt", "/root/.icons/utilities-terminal.png"), 
-                   ("rox-filer", "/root/.icons/system-file-manager.png"), 
+                   ("rox", "/root/.icons/system-file-manager.png"), 
                   ]
 
 #------------------------------------------------------------------------------
 # Background Alpha/Shade Level: 0 (Fully Translucent) -> 255 (Fully Opaque)
 # BG_COLOR is used for tinting
 #------------------------------------------------------------------------------
-SHADE           = 50
+SHADE           = 255
 
 #------------------------------------------------------------------------------
 # Misc. Options: 1 = Enabled/Yes, 0 = Disabled/No

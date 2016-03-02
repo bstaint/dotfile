@@ -38,7 +38,6 @@ set cpoptions+=ces$
 set completeopt=menuone,longest
 set pumheight=10
 set formatoptions=croqn2mB1j
-set lazyredraw
 set wildignore=tags,*.git,*.svn,*.ico,*.swp
 set wildignore+=*.o,*.obj,*.so,*.pyc,*.pyo
 set wildignore+=*.jpg,*.png,*.gif,*.exe,*.dll
@@ -46,40 +45,40 @@ set wildignore+=*.pdf,*.zip,*.rar,*.7z,*.gz
 let mapleader=','
 
 " 界面设置
-set shortmess=atI 
-set guicursor=n-v-c:block-Cursor
-set guioptions-=m guioptions-=T guioptions-=r guioptions-=L
-set statusline=[#%n]\ %<%t%y%m\ %{getcwd()}
-set statusline+=%=\ <%{&ff}\,%{&fenc}\ lin:%l,%v\/%L>
-set laststatus=2
-set guifont=DejaVu\ Sans\ Mono\ 11
-set t_Co=256
-colo wombat256mod
+ set shortmess=atI 
+ set guicursor=n-v-c:block-Cursor
+ set guioptions-=m guioptions-=T guioptions-=r guioptions-=L
+ set statusline=[#%n]\ %<%t%y%m\ %{getcwd()}
+ set statusline+=%=\ <%{&ff}\,%{&fenc}\ lin:%l,%v\/%L>
+ set laststatus=2
+ set guifont=DejaVu\ Sans\ Mono\ 11
+ set t_Co=256
+ colo wombat256mod
 
 " 自定义命令组
-augroup MyVim
-    au InsertEnter,InsertLeave * set cul!
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
-
-" 按键映射
-nnoremap <silent> <F1> :<C-u>exec empty(expand('<cword>'))?'help':'help '.expand('<cword>')<CR>
-nmap <F5> :set ff=unix fenc=utf-8<CR>
-nmap <F6> :setlocal autochdir!<CR>
-nmap <C-Left> :tabp<CR>
-nmap <C-Right> :tabn<CR>
-nmap <S-Left> :bp<CR>
-nmap <S-Right> :bn<CR>
-noremap Q <ESC>
-noremap gQ <ESC>
-xnoremap p pgvy
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-vnoremap . :normal .<CR>
-nmap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-" 避免xptemplate失去焦点就无法跳出
-inoremap <expr> <Tab> search('\%#[]>)}''"]', 'n') ? '<Right>' : '<Tab>'
-
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-    runtime! macros/matchit.vim
-endif
+ augroup MyVim
+     au InsertEnter,InsertLeave * set cul!
+     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+ augroup END
+ 
+ " 按键映射
+ nnoremap <silent> <F1> :<C-u>exec empty(expand('<cword>'))?'help':'help '.expand('<cword>')<CR>
+ nmap <F5> :set ff=unix fenc=utf-8<CR>
+ nmap <F6> :setlocal autochdir!<CR>
+ nmap <C-Left> :tabp<CR>
+ nmap <C-Right> :tabn<CR>
+ nmap <S-Left> :bp<CR>
+ nmap <S-Right> :bn<CR>
+ noremap Q <ESC>
+ noremap gQ <ESC>
+ xnoremap p pgvy
+ nnoremap <silent> <C-l> :nohl<CR><C-l>
+ vnoremap . :normal .<CR>
+ nmap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+ " 避免xptemplate失去焦点就无法跳出
+ inoremap <expr> <Tab> search('\%#[]>)}''"]', 'n') ? '<Right>' : '<Tab>'
+ 
+ " Load matchit.vim, but only if the user hasn't installed a newer version.
+ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+     runtime! macros/matchit.vim
+ endif

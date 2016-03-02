@@ -6,8 +6,8 @@
 [[ $- != *i* ]] && return
 
 # env
+export LANG="en_US.UTF-8"
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:/root/.local/bin:$PATH"
-export PS1="\\[\\e[1;31m\\]\\u@ \\W:\\[\\e[0m\\] "
 export WORKON_HOME=/srv/pyenv
 
 # history
@@ -15,6 +15,13 @@ export HISTSIZE=1000
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='&:ls:ll:la:cd:exit:clear:history'
+
+RED=$(tput setaf 1)
+BLUE=$(tput setaf 4)
+NORMAL=$(tput sgr0)
+source /usr/share/git/git-prompt.sh
+export PS1='\[${BLUE}\]$(__git_ps1 "(%s)")\[${RED}\][\w]\$\[${NORMAL}\] '
+
 
 # alias auto color
 alias ls='ls --color=auto'
@@ -36,6 +43,7 @@ alias grep='grep --color=tty -d skip'
 alias mkdir='mkdir -p -v'
 alias more='less'
 alias ping='ping -c 5'
+alias pipu="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 
-source /root/.local/bin/ssh-agent.sh
 source /usr/bin/virtualenvwrapper.sh
+source /root/.local/bin/ssh-agent.sh
