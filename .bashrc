@@ -41,6 +41,10 @@ alias more='less'
 alias ping='ping -c 5'
 alias pipu="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 
+# fasd config
 eval "$(fasd --init auto)"
+alias v='fasd -fe vim'
+_fasd_bash_hook_cmd_complete v
+
 source /usr/bin/virtualenvwrapper.sh
 source /root/.local/bin/ssh-agent.sh
