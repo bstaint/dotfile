@@ -16,12 +16,8 @@ export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='&:ls:ll:la:cd:exit:clear:history'
 
-RED=$(tput setaf 1)
-BLUE=$(tput setaf 4)
-NORMAL=$(tput sgr0)
 source /usr/share/git/git-prompt.sh
-export PS1='\[${BLUE}\]$(__git_ps1 "(%s)")\[${RED}\][\w]\$\[${NORMAL}\] '
-
+export PS1='\[\e[1;34m\]$(__git_ps1 "(%s)")\[\e[1;31m\][\w]\$\[\e[0m\] '
 
 # alias auto color
 alias ls='ls --color=auto'
@@ -45,5 +41,6 @@ alias more='less'
 alias ping='ping -c 5'
 alias pipu="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 
+eval "$(fasd --init auto)"
 source /usr/bin/virtualenvwrapper.sh
 source /root/.local/bin/ssh-agent.sh

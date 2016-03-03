@@ -55,11 +55,16 @@ set guifont=DejaVu\ Sans\ Mono\ 11
 set t_Co=256
 colo wombat256mod
 
- 自定义命令组
+" 自定义命令组
 augroup MyVim
     au InsertEnter,InsertLeave * set cul!
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
+
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+    runtime! macros/matchit.vim
+endif
 
 " 按键映射
 nnoremap <silent> <F1> :<C-u>exec empty(expand('<cword>'))?'help':'help '.expand('<cword>')<CR>
@@ -77,8 +82,3 @@ vnoremap . :normal .<CR>
 nmap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 " 避免xptemplate失去焦点就无法跳出
 inoremap <expr> <Tab> search('\%#[]>)}''"]', 'n') ? '<Right>' : '<Tab>'
-
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-    runtime! macros/matchit.vim
-endif
