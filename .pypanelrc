@@ -31,7 +31,7 @@ CLOCK_SHADOW_COLOR     = "0x000000"
 #------------------------------------------------------------------------------
 # Panel Spacing and Location Options: Measured in pixels
 #------------------------------------------------------------------------------
-P_LOCATION      = 0             # Panel placement: 0 = top, 1 = bottom
+P_LOCATION      = 1             # Panel placement: 0 = top, 1 = bottom
 P_WIDTH         = 0             # Panel width: 0 = Use full screen width
 P_START         = 0             # Starting X coordinate of the panel
 P_SPACER        = 6             # Spacing between panel objects
@@ -118,8 +118,8 @@ ICON_LIST       = {
 #     ("<executable>", "<full path to icon>")
 #------------------------------------------------------------------------------
 LAUNCH_LIST     = [
-                   ("urxvt", "/root/.icons/utilities-terminal.png"), 
-                   ("rox", "/root/.icons/system-file-manager.png"), 
+                   ("urxvt", "/root/.icons/utilities-terminal.png"),
+                   ("pcmanfm", "/root/.icons/system-file-manager.png")
                   ]
 
 #------------------------------------------------------------------------------

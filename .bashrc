@@ -6,7 +6,6 @@
 [[ $- != *i* ]] && return
 
 # env
-export LANG="en_US.UTF-8"
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:/root/.local/bin:$PATH"
 export WORKON_HOME=/srv/pyenv
 
