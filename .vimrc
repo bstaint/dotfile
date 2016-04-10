@@ -61,10 +61,9 @@ augroup MyVim
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-    runtime! macros/matchit.vim
-endif
+" The matchit plugin makes the % command work better, but it is not backwards
+" compatible.
+packadd matchit
 
 " 按键映射
 nnoremap <silent> <F1> :<C-u>exec empty(expand('<cword>'))?'help':'help '.expand('<cword>')<CR>
