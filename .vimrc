@@ -66,7 +66,6 @@ augroup END
 packadd matchit
 
 " 按键映射
-nnoremap <silent> <F1> :<C-u>exec empty(expand('<cword>'))?'help':'help '.expand('<cword>')<CR>
 nmap <F5> :set ff=unix fenc=utf-8<CR>
 nmap <F6> :setlocal autochdir!<CR>
 nmap <C-Left> :tabp<CR>
