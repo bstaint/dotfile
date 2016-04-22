@@ -10,8 +10,8 @@ URxvt.highlightSelection:  true
 URxvt.loginShell:          true
 URxvt.termName:            xterm-256color
 URxvt.letterSpace:         -1
-URxvt.font:                xft:DejaVu Sans Mono:pixelsize=15
-URxvt.boldFont:            xft:DejaVu Sans Mono:pixelsize=15:style=Bold
+URxvt.font:                xft:DejaVu Sans Mono:pixelsize=14
+URxvt.boldFont:            xft:DejaVu Sans Mono:pixelsize=14:style=Bold
 URxvt.colorBD:             #FFFFFF
 URxvt.borderColor:         black
 URxvt.scrollColor:         black
@@ -20,7 +20,7 @@ URxvt.foreground:          #FFFFFF
 URxvt.background:          #111111
 URxvt.mapAlert:            true
 URxvt.cursorColor:         green
-URxvt.geometry:            80x24
+URxvt.geometry:            80x28
 
 Xft.dpi: 96
 Xft.antialias: true
