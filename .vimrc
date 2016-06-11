@@ -62,17 +62,20 @@ augroup MyVim
 augroup END
 
 function s:FasdFunc(cmd, words)
+    let ret = ''
     if a:cmd == 'e'
         let ret = system('fasd -f ' . a:words)
-        exec ':e ' . ret
     elseif a:cmd == 'cd'
         let ret = system('fasd -d ' . a:words)
-        exec ':cd ' . ret
+    endif
+
+    if len(ret) > 0
+        exec printf(':%s %s', a:cmd, ret)
     endif
 endfunction
 
 function! FasdCompletion(ArgLead, CmdLine, CursorPos)
-    let ret = ""
+    let ret = ''
     let argList = split(a:CmdLine)
     if len(argList) == 1
     " This is the first argument so nothing special here
