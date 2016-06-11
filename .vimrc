@@ -61,6 +61,34 @@ augroup MyVim
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
+function s:FasdFunc(cmd, words)
+    if a:cmd == 'e'
+        let ret = system('fasd -f ' . a:words)
+        exec ':e ' . ret
+    elseif a:cmd == 'cd'
+        let ret = system('fasd -d ' . a:words)
+        exec ':cd ' . ret
+    endif
+endfunction
+
+function! FasdCompletionF(ArgLead, CmdLine, CursorPos)
+    let ret = ""
+    let argList = split(a:CmdLine)
+    if len(argList) == 1
+    " This is the first argument so nothing special here
+    elseif len(argList) == 2 && a:CmdLine[-1:] != ' '
+        if argList[0] == 'E'
+            let ret = system('fasd -fl '. argList[1])
+        elseif argList[0] == 'C'
+            let ret = system('fasd -dl '. argList[1])
+        endif
+        return split(ret, '\n')
+    endif
+endfunction
+
+command! -nargs=1 -complete=customlist,FasdCompletionF E call s:FasdFunc('e', <f-args>)
+command! -nargs=1 -complete=customlist,FasdCompletionF C call s:FasdFunc('cd', <f-args>)
+
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
 packadd matchit
