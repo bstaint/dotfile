@@ -71,7 +71,7 @@ function s:FasdFunc(cmd, words)
     endif
 endfunction
 
-function! FasdCompletionF(ArgLead, CmdLine, CursorPos)
+function! FasdCompletion(ArgLead, CmdLine, CursorPos)
     let ret = ""
     let argList = split(a:CmdLine)
     if len(argList) == 1
@@ -86,8 +86,8 @@ function! FasdCompletionF(ArgLead, CmdLine, CursorPos)
     endif
 endfunction
 
-command! -nargs=1 -complete=customlist,FasdCompletionF E call s:FasdFunc('e', <f-args>)
-command! -nargs=1 -complete=customlist,FasdCompletionF C call s:FasdFunc('cd', <f-args>)
+command! -nargs=1 -complete=customlist,FasdCompletion E call s:FasdFunc('e', <f-args>)
+command! -nargs=1 -complete=customlist,FasdCompletion C call s:FasdFunc('cd', <f-args>)
 
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
