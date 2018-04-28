@@ -59,4 +59,6 @@ if [[ -z "$TMUX" ]] ;then
 fi
 
 source /usr/bin/virtualenvwrapper.sh
+source /usr/share/bash-completion/bash_completion
+source /root/.local/bin/git-completion.bash
 source /root/.local/bin/ssh-agent.sh
