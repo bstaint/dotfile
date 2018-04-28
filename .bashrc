@@ -6,8 +6,9 @@
 [[ $- != *i* ]] && return
 
 # env
-export PATH="$(ruby -e 'print Gem.user_dir')/bin:/root/.local/bin:$PATH"
+export PATH="/root/.local/bin:$PATH"
 export WORKON_HOME=/srv/pyenv
+export EDITOR=vim
 
 # history
 export HISTSIZE=1000
@@ -39,6 +40,8 @@ alias mkdir='mkdir -p -v'
 alias more='less'
 alias ping='ping -c 5'
 alias pipu="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
+alias gitc='git clone --depth=1'
+alias mkvirtualenv2='mkvirtualenv --python=python2 pentest'
 
 # fasd config
 eval "$(fasd --init auto)"

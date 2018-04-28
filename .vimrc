@@ -61,7 +61,7 @@ augroup MyVim
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
-function s:FasdFunc(cmd, words)
+function! s:FasdFunc(cmd, words)
     let ret = ''
     if a:cmd == 'e'
         let ret = system('fasd -f ' . a:words)
