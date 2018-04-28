@@ -42,6 +42,7 @@ alias ping='ping -c 5'
 alias pipu="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 alias gitc='git clone --depth=1'
 alias mkvirtualenv2='mkvirtualenv --python=python2 pentest'
+alias tmux='TERM=screen-256color-bce tmux'
 
 # fasd config
 eval "$(fasd --init auto)"
@@ -58,7 +59,7 @@ if [[ -z "$TMUX" ]] ;then
     fi
 fi
 
-source /usr/bin/virtualenvwrapper.sh
 source /usr/share/bash-completion/bash_completion
 source /root/.local/bin/git-completion.bash
 source /root/.local/bin/ssh-agent.sh
+source /usr/bin/virtualenvwrapper_lazy.sh
