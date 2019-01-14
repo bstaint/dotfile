@@ -1,0 +1,20 @@
+#!/usr/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'ptpython==2.0.4','console_scripts','ptpython'
+__requires__ = 'ptpython==2.0.4'
+import re
+import os
+import sys
+import glob
+from pkg_resources import load_entry_point
+
+if 'VIRTUAL_ENV' in os.environ:
+    virtual_env = os.path.join(os.environ['VIRTUAL_ENV'], 'lib', 
+             'python%d.%d' % sys.version_info[:2], 'site-packages')
+    sys.path.extend(glob.glob(os.path.join(virtual_env, '*.egg')))
+    sys.path.insert(0, virtual_env)
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(
+        load_entry_point('ptpython==2.0.4', 'console_scripts', 'ptpython')()
+    )
