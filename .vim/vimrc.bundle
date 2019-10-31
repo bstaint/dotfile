@@ -1,0 +1,14 @@
+augroup Plugged
+    au FileType qf setlocal nonumber norelativenumber
+augroup END
+
+"{{{
+    let g:phpcomplete_search_tags_for_variables = 1
+"}}}
+
+silent! if plug#begin($HOME.'/.vim/plugged')
+" Plug 'keeto/vim-wombat'
+Plug 'pacha/vem-dark'
+
+call plug#end()
+endif

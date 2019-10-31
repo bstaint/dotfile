@@ -1,0 +1,48 @@
+"自定义颜色{{{
+hi Cursor guibg=White
+hi Directory guifg=#e5786d
+hi ColorColumn guibg=Grey30
+"}}}
+
+" 重定向Ex命令{{{
+function! s:PutRedirEx(...)
+    let cmd =  join(a:000, " ")
+    redir => message
+    exe 'silent '.cmd
+    redir END
+    if &modifiable
+        put= message
+    endif
+endfunction
+"}}}
+
+" 记住光标位置{{{
+function! s:RememberPos()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+"}}}
+
+" 自定义autocmd{{{
+augroup Local
+    au BufWinEnter * call s:RememberPos()
+    au BufNewFile,BufRead *.tpl set filetype=html
+augroup END
+"}}}
+
+" 自定义命令{{{
+command! BO :%bd | e# | bd#
+command! SyntaxName :echo synIDattr(synID(line("."), col("."), 0), "name")
+command! DiffToggle exe 'windo ' &diff == 0 ? 'difft' : 'diffo'
+command! CColumnToggle exe 'setl ' &cc == '' ? 'cc=80' : 'cc&'
+command! -nargs=+ -complete=command Put call <SID>PutRedirEx(<f-args>)
+"}}}
+
+" 键映射{{{
+nmap <silent> <F3> :CColumnToggle<CR>
+nmap <silent> <F5> :set ff=unix fenc=utf-8<CR>
+nmap <silent> <F11> :FullScreenToggle<CR>
+nmap <silent> <F12> :DiffToggle<CR>
+"}}}
