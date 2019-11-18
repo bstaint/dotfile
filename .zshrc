@@ -36,4 +36,3 @@ alias mkvirtualenv2='mkvirtualenv --python=python2 pentest'
 alias pipu="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 
 PROMPT='%{$fg_bold[red]%}%m %{$fg_bold[blue]%}$(shrink_path -f) $(git_prompt_info)$(prompt_char)%{$reset_color%} '
-export ZSH_TMUX_AUTOSTARTED=true
