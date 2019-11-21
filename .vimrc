@@ -7,10 +7,14 @@ set encoding=utf-8
 let &termencoding=&encoding
 " language messages zh_CN
 language messages en_US
+set synmaxcol=500
 syntax on
 "}}}
 
 " 功能设置 {{{
+if has('win32')
+    set viminfo+=n$TEMP\\vim\\_viminfo
+endif
 set pyxversion=3
 set ambiwidth=double
 set backspace=indent,eol,start
@@ -25,7 +29,7 @@ set sw=4 ts=4 et smarttab
 set listchars=tab:?\ ,eol:?
 set autoindent
 set cindent
-set paste
+set pastetoggle=<F4>
 set foldmethod=indent
 set foldlevel=1
 set foldlevelstart=99
@@ -38,7 +42,9 @@ set cinoptions+=:0,g0
 set completeopt=menuone,longest
 set pumheight=10
 set formatoptions=croqn2mB1j
-" set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+if has('win32')
+    set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+endif
 set wildignore=tags,*.ico,*.sw?,*.jpg,*.png,*.gif,*.pdf
 set wildignore+=*.o,*.obj,*.so,*.py[co],*.exe,*.dll,*.lib,*.a
 set wildignore+=*.zip,*.rar,*.7z,*.gz,*.tar,__pycache__
@@ -50,13 +56,15 @@ if bufname('%') == ''
 endif
 
 " 插件设置 {{{
-so $HOME/.vim/vimrc.bundle
+exe 'so '.(has('win32') ? $VIM.'/vimfiles' : $HOME.'/.vim').'/vimrc.bundle'
 " }}}
 
 " 界面设置 {{{
 set shortmess=atcIO
-set guifont=Monaco:h10:cANSI
-set guifontwide=微软雅黑:h10:cGB2312
+if has('win32')
+    set guifont=Monaco:h10:cANSI
+    set guifontwide=微软雅黑:h10:cGB2312
+endif
 
 set guioptions-=m guioptions-=T guioptions-=r guioptions-=L
 set statusline=[#%n]\ %<%t%y%m\ %{getcwd()}
@@ -98,5 +106,5 @@ vnoremap <silent> . :normal .<CR>
 "}}}
 
 " 载入自定义配置 {{{
-so $HOME/.vim/vimrc.local
+exe 'so '.(has('win32') ? $VIM.'/vimfiles' : $HOME.'/.vim').'/vimrc.local'
 "}}}
