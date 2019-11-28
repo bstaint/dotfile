@@ -1,3 +1,8 @@
+if exists("loaded_fasd_plugin")
+    finish
+endif
+let loaded_fasd_plugin = 1
+
 function! s:FasdFunc(cmd, words)
     let ret = ''
     if a:cmd == 'e'
