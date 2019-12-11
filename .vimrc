@@ -55,8 +55,9 @@ if bufname('%') == ''
   set bufhidden=wipe
 endif
 
+let $VIMFILES = has('win32') ? $VIM.'/vimfiles' : $HOME.'/.vim'
 " 插件设置 {{{
-exe 'so '.(has('win32') ? $VIM.'/vimfiles' : $HOME.'/.vim').'/vimrc.bundle'
+exe 'so '.$VIMFILES.'/vimrc.bundle'
 " }}}
 
 " 界面设置 {{{
@@ -106,5 +107,5 @@ vnoremap <silent> . :normal .<CR>
 "}}}
 
 " 载入自定义配置 {{{
-exe 'so '.(has('win32') ? $VIM.'/vimfiles' : $HOME.'/.vim').'/vimrc.local'
+exe 'so '.$VIMFILES.'/vimrc.local'
 "}}}
