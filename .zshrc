@@ -36,5 +36,6 @@ zstyle ':completion:*' menu select
 
 alias mkvirtualenv2='mkvirtualenv --python=python2 pentest'
 alias pipu="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
+alias cpu="watch -n 3 'top -b | head -n 5'"
 
 PROMPT='$(virtualenv_prompt_info)%{$fg_bold[red]%}%m %{$fg_bold[blue]%}$(shrink_path -f) $(git_prompt_info)$(prompt_char)%{$reset_color%} '
