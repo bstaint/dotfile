@@ -42,7 +42,7 @@ set cinoptions+=:0,g0
 set completeopt=menuone,longest
 set pumheight=10
 set formatoptions=croqn2mB1j
-if has('win32')
+if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 endif
 set wildignore=tags,*.ico,*.sw?,*.jpg,*.png,*.gif,*.pdf
@@ -63,8 +63,8 @@ exe 'so '.$VIMFILES.'/vimrc.bundle'
 " 界面设置 {{{
 set shortmess=atcIO
 if has('win32')
-    set guifont=Monaco:h10:cANSI
-    set guifontwide=微软雅黑:h10:cGB2312
+    set guifont=Monaco:h11:cANSI
+    set guifontwide=微软雅黑:h11:cGB2312
 endif
 
 set guioptions-=m guioptions-=T guioptions-=r guioptions-=L

@@ -20,7 +20,6 @@ endfunction
 function! s:RememberPos()
   if line("'\"") <= line("$")
     normal! g`"
-    return 1
   endif
 endfunction
 "}}}
@@ -33,7 +32,7 @@ augroup END
 "}}}
 
 " 自定义命令{{{
-command! BO :%bd | e# | bd#
+command! BO silent! execute "%bd|e#|bd#"
 command! SyntaxName :echo synIDattr(synID(line("."), col("."), 0), "name")
 command! DiffToggle exe 'windo ' &diff == 0 ? 'difft' : 'diffo'
 command! CColumnToggle exe 'setl ' &cc == '' ? 'cc=80' : 'cc&'
@@ -43,6 +42,5 @@ command! -nargs=+ -complete=command Put call <SID>PutRedirEx(<f-args>)
 " 键映射{{{
 nmap <silent> <F3> :CColumnToggle<CR>
 nmap <silent> <F5> :set ff=unix fenc=utf-8<CR>
-nmap <silent> <F11> :FullScreenToggle<CR>
 nmap <silent> <F12> :DiffToggle<CR>
 "}}}
