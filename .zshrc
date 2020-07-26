@@ -2,6 +2,7 @@ export WORKON_HOME=/srv/pyenv
 export PATH="/root/.local/bin:$PATH"
 export EDITOR=vim
 export ZSH_TMUX_AUTOSTART=true
+export MANPAGER="vim -M +MANPAGER -"
 
 # load zgen
 source "${HOME}/.zgen/zgen.zsh"

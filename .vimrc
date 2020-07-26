@@ -1,8 +1,10 @@
 " 编码设置 {{{
 set nocompatible
-set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,gbk,cp936,gb2312
-set fileencodings+=big5,euc-jp,euc-kr,latin1
+if &modifiable
+    set fileencoding=utf-8
+    set fileencodings=ucs-bom,utf-8,gbk,cp936,gb2312
+    set fileencodings+=big5,euc-jp,euc-kr,latin1
+endif
 set encoding=utf-8
 let &termencoding=&encoding
 " language messages zh_CN
