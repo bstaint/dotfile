@@ -35,6 +35,7 @@ setopt prompt_subst
 
 zstyle ':completion:*' menu select
 
+unalias ipython
 alias mkvirtualenv2='mkvirtualenv --python=python2 pentest'
 alias pipu="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 alias cpu="watch -n 3 'top -b | head -n 5'"
