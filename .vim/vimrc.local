@@ -1,11 +1,28 @@
-"自定义颜色{{{
+" 自定义颜色 {{{
 hi Cursor guibg=White
+hi CursorIM guibg=White
 hi Directory guifg=#e5786d
 hi ColorColumn guibg=Grey30
 "}}}
 
-" 重定向Ex命令{{{
-function! s:PutRedirEx(...)
+" 自定义autocmd {{{
+augroup Local
+    au FileType * set fo-=c fo-=r fo-=o
+    au FileType qf setlocal nonumber
+    au TerminalOpen * setlocal nobuflisted bufhidden=hide
+    au FocusGained * if &diff | wincmd = | endif " git mergetool
+    au InsertEnter,InsertLeave * set cul!
+    au BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+    au BufNewFile,BufRead *.tpl setf html
+    au BufEnter * silent! checktime
+augroup END
+"}}}
+
+" 自定义命令 {{{
+function! s:put_redir_ex(...)
     let cmd =  join(a:000, " ")
     redir => message
     exe 'silent '.cmd
@@ -14,33 +31,32 @@ function! s:PutRedirEx(...)
         put= message
     endif
 endfunction
-"}}}
 
-" 记住光标位置{{{
-function! s:RememberPos()
-  if line("'\"") <= line("$")
-    normal! g`"
-  endif
-endfunction
-"}}}
-
-" 自定义autocmd{{{
-augroup Local
-    au BufWinEnter * call s:RememberPos()
-    au BufNewFile,BufRead *.tpl set filetype=html
-augroup END
-"}}}
-
-" 自定义命令{{{
-command! BO silent! execute "%bd|e#|bd#"
+command! BO silent! execute 'up|%bd|e#|bd#'
 command! SyntaxName :echo synIDattr(synID(line("."), col("."), 0), "name")
 command! DiffToggle exe 'windo ' &diff == 0 ? 'difft' : 'diffo'
 command! CColumnToggle exe 'setl ' &cc == '' ? 'cc=80' : 'cc&'
-command! -nargs=+ -complete=command Put call <SID>PutRedirEx(<f-args>)
+command! -nargs=+ -complete=command Put call s:put_redir_ex(<f-args>)
 "}}}
 
-" 键映射{{{
-nmap <silent> <F3> :CColumnToggle<CR>
-nmap <silent> <F5> :set ff=unix fenc=utf-8<CR>
+" 按键映射 {{{
+xnoremap p pgvy
+vnoremap Y "*y
+vnoremap <silent> . :normal .<CR>
+nnoremap gp `[v`]
+noremap Q <ESC>
+noremap gQ <ESC>
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+nnoremap <silent> <Leader>. :cd %:p:h<CR>
+nnoremap <S-Tab> :b <Tab>
+inoremap <silent><expr> <C-j> pumvisible() ? "\<C-Y>" : "\<CR>"
+nmap <S-Left> :bp<CR>
+nmap <S-Right> :bn<CR>
+nmap <F3> :CColumnToggle<CR>
+nmap <silent> gm :call cursor(0, len(getline('.'))/2)<CR>
+nmap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nmap <silent> <F10> :set ff=unix fenc=utf-8<CR>
+nmap <silent> <F11> :FullScreenToggle<CR>
 nmap <silent> <F12> :DiffToggle<CR>
 "}}}
+" vim:foldmethod=marker:

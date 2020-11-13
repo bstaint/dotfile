@@ -1,9 +1,9 @@
 augroup Plugged
-    au FileType qf setlocal nonumber norelativenumber
+    au!
+    au FileType leaderf setlocal nonumber norelativenumber
 augroup END
 
 silent! if plug#begin($VIMFILES.'/plugged')
-
 "{{{ buildin
     let g:phpcomplete_search_tags_for_variables = 1
 "}}}
@@ -12,3 +12,4 @@ Plug 'pacha/vem-dark'
 
 call plug#end()
 endif
+" vim:foldmethod=marker:

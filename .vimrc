@@ -14,6 +14,7 @@ syntax on
 "}}}
 
 " 功能设置 {{{
+let $VIMFILES = has('win32') ? $VIM.'/vimfiles' : $HOME.'/.vim'
 if has('win32')
     set viminfo+=n$TEMP\\vim\\_viminfo
 endif
@@ -29,6 +30,7 @@ set hlsearch
 set hidden
 set sw=4 ts=4 et smarttab
 set listchars=tab:?\ ,eol:?
+set autoread
 set autoindent
 set cindent
 set pastetoggle=<F4>
@@ -44,6 +46,7 @@ set cinoptions+=:0,g0
 set completeopt=menuone,longest
 set pumheight=10
 set formatoptions=croqn2mB1j
+set sessionoptions-=options
 if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 endif
@@ -51,63 +54,50 @@ set wildignore=tags,*.ico,*.sw?,*.jpg,*.png,*.gif,*.pdf
 set wildignore+=*.o,*.obj,*.so,*.py[co],*.exe,*.dll,*.lib,*.a
 set wildignore+=*.zip,*.rar,*.7z,*.gz,*.tar,__pycache__
 let mapleader=','
-"}}}
-"
 if bufname('%') == ''
-  set bufhidden=wipe
+    set bufhidden=wipe
 endif
+"}}}
 
-let $VIMFILES = has('win32') ? $VIM.'/vimfiles' : $HOME.'/.vim'
 " 插件设置 {{{
 exe 'so '.$VIMFILES.'/vimrc.bundle'
 " }}}
 
 " 界面设置 {{{
 set shortmess=atcIO
+set guioptions-=m guioptions-=T guioptions-=r guioptions-=L
 if has('win32')
     set guifont=Monaco:h11:cANSI
     set guifontwide=微软雅黑:h11:cGB2312
+    set renderoptions=type:directx
 endif
 
-set guioptions-=m guioptions-=T guioptions-=r guioptions-=L
-set statusline=[#%n]\ %<%t%y%m\ %{getcwd()}
-set statusline+=%=\ <%{&ff}\,%{&fenc}\ lin:%l,%v\/%L>
+let s:currentmode={
+      \ 'v'  : 'visual',
+      \ 'V'  : 'visuall',
+      \ ''  : 'visualb',
+      \ 'i'  : 'insert',
+      \}
+set statusline=%!StatusLine()
+function! StatusLine()
+    let statusline = '%#VemStatusLineBranch# %n %#CursorColumn# %t %y%m %{getcwd()}%= '
+    if &buftype ==# ''
+        let mode = get(s:currentmode, mode(), '')
+        if mode !=# ''
+            let statusline .= '%#VemStatusLineMode# '.mode
+            let statusline .= (&paste == 1) ? ' (paste)' : ''
+        endif
+        let statusline .= '%#VemStatusLineBranch# %{&fenc}/%{&ff} %p%% %l:%v '
+    endif
+    return statusline
+endfunction
 set laststatus=2
 colorscheme vem-dark
 "}}}
 
-" 自定义autocmd {{{
-augroup Local
-    au FileType qf setlocal nobuflisted bufhidden=hide
-    au TerminalOpen * setlocal nobuflisted bufhidden=hide
-    au FocusGained * if &diff | wincmd = | endif " git mergetool
-    au InsertEnter,InsertLeave * set cul!
-augroup END
-"}}}
-
+" 自定义设置 {{{
 " The matchit plugin makes the % command work better, but it is not backwards
 packadd! matchit
-
-" 按键映射 {{{
-nnoremap <S-Tab> :b <Tab>
-nmap <S-Left> :bp<CR>
-nmap <S-Right> :bn<CR>
-
-nmap <silent> <C-w>- :new<CR>
-nmap <silent> <C-w>\| :vnew<CR>
-
-nmap <silent> gm :call cursor(0, len(getline('.'))/2)<CR>
-nmap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-nnoremap <silent> <Leader>. :cd %:p:h<CR>
-vnoremap Y "*y
-nnoremap gp `[v`]
-noremap Q <ESC>
-noremap gQ <ESC>
-xnoremap p pgvy
-vnoremap <silent> . :normal .<CR>
-"}}}
-
-" 载入自定义配置 {{{
 exe 'so '.$VIMFILES.'/vimrc.local'
 "}}}
+" vim:foldmethod=marker:
