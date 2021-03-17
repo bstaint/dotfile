@@ -34,10 +34,12 @@ fi
 setopt prompt_subst
 
 zstyle ':completion:*' menu select
+zstyle ':vcs_info:*' formats '(%b%c%u%m%F{blue})%f '
 
 unalias ipython
 alias mkvirtualenv2='mkvirtualenv --python=python2 pentest'
 alias pipu="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 alias cpu="watch -n 3 'top -b | head -n 5'"
 
-PROMPT='$(virtualenv_prompt_info)%{$fg_bold[red]%}%m %{$fg_bold[blue]%}$(shrink_path -f) $(git_prompt_info)$(prompt_char)%{$reset_color%} '
+ZSH_THEME_VIRTUALENV_SUFFIX='] '
+PROMPT='$(virtualenv_prompt_info)%(!.%B%F{red}.%B%F{red}%n@)%m %F{blue}$(shrink_path -f) ${vcs_info_msg_0_}%F{blue}%(!.#.$)%{$reset_color%} '
